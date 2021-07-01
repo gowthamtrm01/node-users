@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request, response } from "express";
 import mongoose from "mongoose";
 import recipeRouter from './routers/recipes.js';
 import { router } from './routers/users.js';
@@ -16,5 +16,9 @@ con.on('open', () => console.log('Mongodb is connected'));
 
 app.use('/users', router);
 app.use('/recipes', recipeRouter);
+
+app.get('/', (request, response) => {
+    response.send("Welcome to users");
+})
 
 app.listen(PORT, () => console.log(`Server was started ${PORT}`));
